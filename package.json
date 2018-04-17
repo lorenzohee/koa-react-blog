@@ -4,7 +4,12 @@
   "description": "Simple blog with koa and react",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "NODE_ENV=development node bin/development.js",
+    "production": "NODE_ENV=production node bin/production.js",
+    "build": "NODE_ENV=production npm run clean && webpack --config webpack.build.js ",
+    "clean": "rm -rf public/build/ && rm -rf dist/",
+    "test": "mocha -u bdd --compilers js:babel-core/register",
+    "dev": "npm start"
   },
   "repository": {
     "type": "git",
@@ -47,18 +52,28 @@
     "postcss-loader": "^2.1.4",
     "style-loader": "^0.20.3",
     "url-loader": "^1.0.1",
-    "webpack": "^4.5.0",
+    "webpack": "^3.0.0",
     "webpack-dev-middleware": "^3.1.2",
     "webpack-hot-middleware": "^2.21.2"
   },
   "dependencies": {
+    "antd": "^3.4.1",
     "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "co": "^4.6.0",
+    "colors": "^1.2.1",
+    "copy-webpack-plugin": "^4.5.1",
     "debug": "^3.1.0",
+    "echarts": "^4.0.4",
     "ejs": "^2.5.8",
+    "element-resize-event": "^2.0.9",
+    "eslint": "^4.19.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "highlight.js": "^9.12.0",
+    "isomorphic-fetch": "^2.2.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-convert": "^1.2.0",
@@ -73,6 +88,9 @@
     "koa-views": "^6.1.4",
     "koa-webpack-dev-middleware": "^2.0.2",
     "lodash": "^4.17.5",
+    "marked": "^0.3.19",
+    "mocha": "^5.1.0",
+    "moment": "^2.22.1",
     "normalize.css": "^8.0.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
@@ -81,6 +99,11 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "request-promise": "^4.2.2",
+    "rucksack-css": "^1.0.2",
+    "sequelize": "^4.37.6",
+    "should": "^13.2.1",
+    "supertest": "^3.0.0"
   }
 }

@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'development'
-
 var webpack = require('webpack')
 var path = require('path')
 var rucksack = require('rucksack-css')
@@ -11,13 +9,11 @@ var includes = [
 
 module.exports = {
   name: 'backend dev hot middlware',
-  devtool: 'cheap-module-eval-source-map',
   entry: [
     // For old browsers
     'eventsource-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    // './platforms/browser/index.js'
-    './app/app.js'
+    './platforms/browser/index.js'
   ],
   output: {
     path: path.join(__dirname, '/public/static'),
