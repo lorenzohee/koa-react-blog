@@ -104,6 +104,7 @@
     "rucksack-css": "^1.0.2",
     "sequelize": "^4.37.6",
     "should": "^13.2.1",
+    "sqlite3": "^4.0.0",
     "supertest": "^3.0.0"
   }
 }
