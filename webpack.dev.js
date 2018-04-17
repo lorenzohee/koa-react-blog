@@ -1,6 +1,8 @@
+process.env.NODE_ENV = 'development'
+
 var webpack = require('webpack')
 var path = require('path')
-var rucksack = require('rucksack-css')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer')
 var includes = [
   path.resolve(__dirname, 'app'),
@@ -9,11 +11,13 @@ var includes = [
 
 module.exports = {
   name: 'backend dev hot middlware',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
     // For old browsers
     'eventsource-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './platforms/browser/index.js'
+    // './platforms/browser/index.js'
+    './app/app.js'
   ],
   output: {
     path: path.join(__dirname, '/public/static'),
@@ -21,57 +25,103 @@ module.exports = {
     chunkFilename: '[id].chunk.js',
     publicPath: '/build/'
   },
-  resolve: {
-    modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')],
-    extensions: ['', '.js', '.jsx']
-  },
-
-  resolveLoader: {
-    modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')]
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.jsx|.js$/,
-        exclude: /node_modules/,
-        include: includes,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react-hmre'],
-          plugins: [
-            ["inline-replace-variables", {
-              "__SERVER__": false
-            }]
-          ]
-        }
-      }, {
-        test: /\.css$/,
-        loader: 'style!css!postcss'
-      }, {
-        test: /\.less$/,
-        include: includes,
-        loader: 'style!css!less!postcss'
-      },
-      { test: /\.woff2?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
-      { test: /\.ttf$/, loader: 'url?limit=10000&minetype=application/octet-stream' },
-      { test: /\.eot$/, loader: 'file' },
-      { test: /\.svg$/, loader: 'url?limit=10000&minetype=image/svg+xml' },
-      { test: /\.(png|jpg|jpeg|gif)$/i, loader: 'url?limit=10000&name=[name].[ext]' },
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.html?$/, loader: 'file?name=[name].[ext]' }
-    ]
-  },
-
-  postcss: [
-    rucksack(),
-    autoprefixer({
-      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8']
-    })
-  ],
+   module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: (loader) => [
+                                    autoprefixer()
+                                ],
+                            },
+                        },
+                    ],
+                }),
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['react',
+                            ['env',{
+                                'targets': {
+                                    'browsers': ['last 2 versions', 'ie >= 9'],
+                                },
+                                'modules': false,
+                                'loose': true,
+                                'useBuiltIns': true,
+                                'debug': true,
+                                },
+                            ]
+                        ],
+                        plugins: [
+                            'babel-plugin-transform-class-properties',
+                            'babel-plugin-syntax-dynamic-import',
+                            [
+                                'babel-plugin-transform-runtime', {
+                                    'helpers': true,
+                                    'polyfill': true,
+                                    'regenerator': true,
+                                },
+                            ],
+                            [
+                                'babel-plugin-transform-object-rest-spread', {
+                                    'useBuiltIns': true
+                                },
+                            ],
+                            [
+                                'import',
+                                {
+                                    "libraryName": "antd",
+                                    "style": true,
+                                }
+                            ]
+                        ],
+                    },
+                },
+            },
+            {
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
+                    use: [{
+                        loader: 'css-loader',
+                    }, {
+                        loader: 'less-loader',
+                    }],
+                    fallback: 'style-loader',
+                }),
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]',
+                        outputPath: 'images',
+                    },
+                },
+            },
+            {
+                test: /\.js$/,
+                use: ['source-map-loader'],
+                enforce: 'pre',
+            },
+        ],
+    },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'common.js'})
   ]
 }
