@@ -11,7 +11,7 @@ export default {
   publicPath: '/public',
   staticPath: '/public/static',
   port: 3388,
-  title: "重庆邮电大学 · 镜像源",
+  title: "Lorenzo's Blog",
   db: {
     dialect: 'sqlite',
     database: 'main',
