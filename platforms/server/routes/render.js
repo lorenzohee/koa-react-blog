@@ -1,4 +1,5 @@
-import { match } from 'react-router'
+/* jshint esversion: 6 */
+import { matchPath } from 'react-router-dom'
 import renderCtrl from '../controllers/serverRenderCtrl'
 
 function _match (location) {

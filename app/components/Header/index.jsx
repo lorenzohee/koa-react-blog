@@ -12,10 +12,6 @@ import logo from './logo.png'
 const MenuItem = Menu.Item
 
 export default class Header extends Component {
-  static propTypes = {
-    current: PropTypes.string.isRequired
-  }
-  
   render () {
     const { current } = this.props
 

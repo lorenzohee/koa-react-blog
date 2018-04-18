@@ -1,17 +1,25 @@
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+import App from './containers/App'
+import HomeLayout from './containers/HomeLayout'
+import HomeListPage from './containers/HomeList';
+import HomeGuidePage from './containers/HomeGuidePage';
+import HomeServerStatusPage from './containers/HomeStatus';
+import EventsPage from './containers/Events';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory'
+
+const customHistory = createBrowserHistory()
 import React from 'react'
 
-import App from './containers/App'
-import News from './containers/News'
-import About from './containers/About'
-import Home from './containers/Home'
-
 export default (
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
-      <Route path="news" component={News} />
-      <Route path="about" component={About} />
+<Router history={customHistory}>
+  <Route path="/" component={App}>
+    <Route component={HomeLayout}>
+      <IndexRoute component={HomeListPage} />
+      <Route path="guide/:guideName" component={HomeGuidePage} />
+      <Route path="server" component={HomeServerStatusPage} />
     </Route>
-  </Router>
+    <Route path="/events" component={EventsPage} />
+  </Route>
+</Router>
+
 )

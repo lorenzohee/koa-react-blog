@@ -13,16 +13,6 @@ import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 
 export default class Echarts extends Component {
-  static propTypes = {
-    option: React.PropTypes.object.isRequired,
-    style: React.PropTypes.object,
-    className: React.PropTypes.string,
-    theme: React.PropTypes.string,
-    onChartReady: React.PropTypes.func,
-    showLoading: React.PropTypes.bool,
-    onEvents: React.PropTypes.object
-  }
-
   componentDidMount() {
     const echartObj = this.renderEchartDom();
     const onEvents = this.props.onEvents || [];

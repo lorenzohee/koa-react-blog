@@ -9,14 +9,6 @@ import { Link } from 'react-router';
 const { SubMenu } = Menu;
 
 export default class extends Component {
-  static propTypes = {
-    current: PropTypes.string.isRequired,
-    loaded: PropTypes.bool.isRequired,
-    guides: PropTypes.arrayOf(PropTypes.shape({
-      universalName: PropTypes.string.isRequired,
-      parsedMarkdown: PropTypes.string.isRequired
-    }))
-  }
   render () {
     const { guides, loaded, current } = this.props
     if (!loaded) {

@@ -15,14 +15,6 @@ const typeMap = {
 }
 
 export default class EventsPage extends Component {
-  static propTypes = {
-    events: PropTypes.arrayOf(PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      event: PropTypes.string.isRequired,
-      time: PropTypes.number.isRequired
-    }))
-  }
-
   render() {
     const { events } = this.props
 

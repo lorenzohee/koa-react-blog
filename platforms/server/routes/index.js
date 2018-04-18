@@ -9,5 +9,5 @@ export default async (ctx, next) => {
     return await require('./api').routes()(ctx, next)
   }
   // others react-router to render
-  await require('./render')(ctx, next)
+  await require('./server_router')(ctx, next)
 }
