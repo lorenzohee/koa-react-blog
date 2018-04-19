@@ -5,13 +5,9 @@ import HomeGuidePage from './containers/HomeGuidePage';
 import HomeServerStatusPage from './containers/HomeStatus';
 import EventsPage from './containers/Events';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory'
-
-const customHistory = createBrowserHistory()
 import React from 'react'
 
 export default (
-<Router history={customHistory}>
   <Route path="/" component={App}>
     <Route component={HomeLayout}>
       <IndexRoute component={HomeListPage} />
@@ -20,6 +16,4 @@ export default (
     </Route>
     <Route path="/events" component={EventsPage} />
   </Route>
-</Router>
-
 )

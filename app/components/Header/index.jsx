@@ -4,14 +4,17 @@
  * @Email i@zeroling.com
  */
 import React, { Component, PropTypes} from 'react'
-import { Menu } from 'antd'
+import { Menu, Icon } from 'antd'
 import { Link } from 'react-router'
 import './header.less'
 import logo from './logo.png'
 
-const MenuItem = Menu.Item
+const { SubMenu } = Menu;
 
 export default class Header extends Component {
+  state = {
+    theme: 'dark'
+  }
   render () {
     const { current } = this.props
 
@@ -19,14 +22,15 @@ export default class Header extends Component {
       <div className="logo">
         <img src={logo} />
       </div>
-      <h2>重庆邮电大学 · 镜像源</h2>
-      <Menu mode="horizontal" selectedKeys={[current]}>
-        <MenuItem key="home">
-          <Link to="/">首页</Link>
-        </MenuItem>
-        <MenuItem key="events">
-          <Link to="/events">事件通告</Link>
-        </MenuItem>
+      <h2>Lorenzo · ho</h2>
+      <Menu mode="horizontal" selectedKeys={[current]} theme='dark' style={{width: 256}} mode="inline">
+        <Menu.Item key="home">
+            <Icon type='pie-chart'/>
+          首页
+        </Menu.Item>
+        <Menu.Item key="events">
+          事件通告
+        </Menu.Item>
       </Menu>
     </header>;
   }

@@ -17,7 +17,7 @@ const typeMap = {
 export default class EventsPage extends Component {
   render() {
     const { events } = this.props
-
+    console.log('##events:##'+events.join(','))
     return (<Row className="page-events">
       <Col offset="4">
         <h2># 维护通知</h2>

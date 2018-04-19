@@ -39,6 +39,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "chokidar": "^2.0.3",
     "css-loader": "^0.28.11",
+    "eslint-plugin-react": "^7.7.0",
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^1.1.11",
     "json-loader": "^0.5.7",

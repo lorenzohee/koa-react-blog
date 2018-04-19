@@ -40,11 +40,13 @@ module.exports = [{
       // },
       {
         test: /\.css$/,
-        loader: extractStyle.extract(['css', 'postcss'])
+        loader: extractStyle.extract(['css', 'postcss']),
+        exclude: /node_modules/
       }, {
         test: /\.less$/,
         include: includes,
-        loader: extractStyle.extract(['css', 'less', 'postcss'])
+        loader: extractStyle.extract(['css', 'less', 'postcss']),
+        exclude: /node_modules/
       },
       { test: /\.woff2?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
       { test: /\.ttf$/, loader: 'url?limit=10000&minetype=application/octet-stream' },
