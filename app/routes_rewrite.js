@@ -1,6 +1,4 @@
 import App from './containers/App'
-import HomeLayout from './containers/HomeLayout'
-import HomeListPage from './containers/HomeList';
 import HomeGuidePage from './containers/HomeGuidePage';
 import HomeServerStatusPage from './containers/HomeStatus';
 import EventsPage from './containers/Events';
@@ -28,8 +26,9 @@ class Routes extends React.Component {
 				<Route render={({ location }) => {
 					return(
 						<div key={location.pathname} name={location.pathname}  style={{height:"100%",width:"100%",position:"absolute"}}>
-							<Route location={location} exact path="/" component={App}>
-                            </Route>
+							<Route location={location} exact path="/" component={App} />
+                            <Route path="/guide/:guideName" component={HomeGuidePage} />
+                            <Route path="/server" component={HomeServerStatusPage} />
                             <Route location={location} path="/events" component={EventsPage} />
 						</div>
 					)

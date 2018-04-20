@@ -5,16 +5,12 @@
  */
 import React, { Component, PropTypes} from 'react'
 import { Menu, Icon } from 'antd'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import './header.less'
 import logo from './logo.png'
 
-const { SubMenu } = Menu;
 
 export default class Header extends Component {
-  state = {
-    theme: 'dark'
-  }
   render () {
     const { current } = this.props
 
@@ -26,11 +22,20 @@ export default class Header extends Component {
       <Menu mode="horizontal" selectedKeys={[current]} theme='dark' style={{width: 256}} mode="inline">
         <Menu.Item key="home">
             <Icon type='pie-chart'/>
+          <Link to='/'>
           首页
+          </Link>
         </Menu.Item>
-        <Menu.Item key="events">
-          事件通告
-        </Menu.Item>
+          <Menu.Item key="events">
+              <Link to='/events'>
+                  事件通告
+              </Link>
+          </Menu.Item>
+          <Menu.Item key="events">
+              <Link to='/server'>
+                  Server
+              </Link>
+          </Menu.Item>
       </Menu>
     </header>;
   }

@@ -11,13 +11,14 @@ var includes = [
 
 module.exports = {
   name: 'backend dev hot middlware',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: [
     // For old browsers
-    'eventsource-polyfill',
+    //'eventsource-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    // './platforms/browser/index.js'
-    './app/app.js'
+      path.resolve(__dirname, 'platforms/browser/index.js')
+
+    // './app/app.js'
   ],
   output: {
     path: path.join(__dirname, '/public/static'),
@@ -25,6 +26,14 @@ module.exports = {
     chunkFilename: '[id].chunk.js',
     publicPath: '/build/'
   },
+    resolve: {
+        extensions: ['.js','.jsx']
+    },
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    },
    module: {
         rules: [
             {
@@ -50,7 +59,7 @@ module.exports = {
                 }),
             },
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -100,6 +109,7 @@ module.exports = {
                         loader: 'css-loader',
                     }, {
                         loader: 'less-loader',
+                        options: { javascriptEnabled: true }
                     }],
                     fallback: 'style-loader',
                 }),
@@ -122,6 +132,7 @@ module.exports = {
         ],
     },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'common.js'})
+    new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'common.js'}),
+      new ExtractTextPlugin('style.css')
   ]
 }

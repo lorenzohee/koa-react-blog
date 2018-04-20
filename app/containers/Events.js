@@ -4,7 +4,7 @@
  * @Email i@zeroling.com
  */
 import { connect } from 'react-redux'
-import Events from '../components/Events'
+import Events from '../components/Events/index.jsx'
 
 const MOCK_DATA = [{
   type: 'error',
