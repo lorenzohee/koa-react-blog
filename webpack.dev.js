@@ -4,6 +4,7 @@ var webpack = require('webpack')
 var path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer')
+var rucksack = require('rucksack-css')
 var includes = [
   path.resolve(__dirname, 'app'),
   path.resolve(__dirname, 'platforms')
@@ -12,14 +13,15 @@ var includes = [
 module.exports = {
   name: 'backend dev hot middlware',
   devtool: 'source-map',
-  entry: [
-    // For old browsers
-    //'eventsource-polyfill',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-      path.resolve(__dirname, 'platforms/browser/index.js')
-
-    // './app/app.js'
-  ],
+  entry: {
+    ventor: ['react', 'react-dom', 'redux', 'react-redux'],
+    index: [
+        // For old browsers
+        'babel-polyfill',
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+        path.resolve(__dirname, 'platforms/browser/index.js')
+    ]
+  },
   output: {
     path: path.join(__dirname, '/public/static'),
     filename: '[name].js',
@@ -38,13 +40,16 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
+                use: [
+                        {
+                            loader: 'style-loader',
+                            options: {}
+                        },
                         {
                             loader: 'css-loader',
                             options: {
                                 modules: true,
+                                importLoaders: 1 // css-loader options
                             },
                         },
                         {
@@ -56,7 +61,6 @@ module.exports = {
                             },
                         },
                     ],
-                }),
             },
             {
                 test: /\.(js|jsx)$/,
@@ -104,15 +108,30 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    use: [{
+                use: [
+                    {
+                        loader: 'style-loader',
+                        options: {},
+                    },
+                    {
                         loader: 'css-loader',
+                        options: {
+                          importLoaders: 2 // css-loader options
+                        } 
                     }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: (loader) => [
+                                rucksack(),
+                                autoprefixer({
+                                  browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8']
+                                })
+                            ],
+                        } // postcss-loader options
+                      },{
                         loader: 'less-loader',
                         options: { javascriptEnabled: true }
-                    }],
-                    fallback: 'style-loader',
-                }),
+                    }]
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
@@ -133,6 +152,15 @@ module.exports = {
     },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'common.js'}),
-      new ExtractTextPlugin('style.css')
+    new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest'],
+        filename: '[name].[chunkhash:8].js'
+    }),
+    new ExtractTextPlugin('[name].[contenthash:8].css'),
+    //压缩
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {warnings: false},
+        comments: false
+    })
   ]
 }

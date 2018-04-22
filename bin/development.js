@@ -72,8 +72,11 @@ watcher.on('ready', function () {
 var isListened = false
 compiler._plugins['after-compile'].push(function (compilation, callback) {
   callback()
-  !isListened && server.listen(config.port, function () {
-    console.log('App started, at port %d, CTRL + C to terminate', config.port)
+  if(!isListened){
     isListened = true
-  })
+    server.listen(config.port, function () {
+      console.log('App started, at port %d, CTRL + C to terminate', config.port)
+      isListened = true
+    })
+  }
 })

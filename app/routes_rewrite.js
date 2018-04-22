@@ -5,6 +5,7 @@ import EventsPage from './containers/Events';
 import { Provider } from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory, withRouter} from 'react-router-dom';
 import React from 'react'
+import 'antd/dist/antd.css';
 
 
 const RedirectWithStatus = ({from, to , status}) =>{

@@ -26,7 +26,6 @@ class App extends Component {
   
   render () {
     const { location: { pathname } } = this.props
-    console.log('@@pathname:@@'+pathname)
     const headerCurrent = pathname === '/' ? 'home' : pathname.slice(1)
     
     return (<div>
