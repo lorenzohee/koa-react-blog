@@ -13,15 +13,14 @@ var includes = [
 module.exports = {
   name: 'backend dev hot middlware',
   devtool: 'source-map',
-  entry: {
-    ventor: ['react', 'react-dom', 'redux', 'react-redux'],
-    index: [
-        // For old browsers
-        'babel-polyfill',
-        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-        path.resolve(__dirname, 'platforms/browser/index.js')
-    ]
-  },
+  entry: [
+    // For old browsers
+    'eventsource-polyfill',
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    path.resolve(__dirname, 'platforms/browser/index.js')
+
+    // './app/app.js'
+  ],
   output: {
     path: path.join(__dirname, '/public/static'),
     filename: '[name].js',
@@ -152,15 +151,6 @@ module.exports = {
     },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'common.js'}),
-    new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendor', 'manifest'],
-        filename: '[name].[chunkhash:8].js'
-    }),
-    new ExtractTextPlugin('[name].[contenthash:8].css'),
-    //压缩
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {warnings: false},
-        comments: false
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

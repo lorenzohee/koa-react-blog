@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import 'antd/dist/antd.css'
 import '../common/layout.less'
-import Header from '../components/Header'
+import HeaderNav from '../components/Header'
 import Main from '../components/Main'
-import Footer from '../components/Footer'
 import { fetchStateIfNeeded } from '../actions/mirrorState'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -29,9 +27,8 @@ class App extends Component {
     const headerCurrent = pathname === '/' ? 'home' : pathname.slice(1)
     
     return (<div>
-      <Header current={headerCurrent}/>
+      <HeaderNav current={headerCurrent}/>
       <Main>{this.props.children}</Main>
-      <Footer />
     </div>)
   }
 }

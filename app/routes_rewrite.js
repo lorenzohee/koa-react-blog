@@ -5,7 +5,7 @@ import EventsPage from './containers/Events';
 import { Provider } from 'react-redux'
 import {Router, Route, IndexRoute, browserHistory, withRouter} from 'react-router-dom';
 import React from 'react'
-import 'antd/dist/antd.css';
+import Footer from './components/Footer'
 
 
 const RedirectWithStatus = ({from, to , status}) =>{
@@ -27,11 +27,12 @@ class Routes extends React.Component {
 				<Route render={({ location }) => {
 					return(
 						<div key={location.pathname} name={location.pathname}  style={{height:"100%",width:"100%",position:"absolute"}}>
-							<Route location={location} exact path="/" component={App} />
+							<Route location={location} path="/" component={App} />
                             <Route path="/guide/:guideName" component={HomeGuidePage} />
                             <Route path="/server" component={HomeServerStatusPage} />
                             <Route location={location} path="/events" component={EventsPage} />
-						</div>
+							<Route location={location} path="/" component={Footer} />
+                        </div>
 					)
 				}}/>
 			</Provider>
