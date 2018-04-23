@@ -1,7 +1,7 @@
 /**
- * Created at 16/5/17.
- * @Author Ling.
- * @Email i@zeroling.com
+ * @Description redux store add chrome plugin listener
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
  */
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
@@ -24,3 +24,22 @@ export default function configureStore(initialState) {
 
   return store
 }
+
+// import {createStore, applyMiddleware, compose} from 'redux';
+// import rootReducer from '../reducers';
+// import thunk from 'redux-thunk';
+//
+// let store;
+// if( undefined == window || !(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__)){
+//     store = createStore(
+//         rootReducer,
+//         applyMiddleware(thunk)
+//     );
+// }else{
+//     store = createStore(
+//         rootReducer,
+//         compose(applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) //插件调试，未安装会报错
+//     );
+// }
+//
+// export default store;

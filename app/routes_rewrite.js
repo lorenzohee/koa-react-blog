@@ -1,20 +1,18 @@
-import App from './containers/App'
+/**
+ * @description Layout
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 2018-04-23 16:00:00
+ */
+import { Provider } from 'react-redux'
+import {Route} from 'react-router-dom';
+import React from 'react'
+import Footer from './components/Footer';
+import {Layout} from 'antd';
+import Nav from './containers/Nav'
 import HomeGuidePage from './containers/HomeGuidePage';
 import HomeServerStatusPage from './containers/HomeStatus';
 import EventsPage from './containers/Events';
-import { Provider } from 'react-redux'
-import {Router, Route, IndexRoute, browserHistory, withRouter} from 'react-router-dom';
-import React from 'react'
-import Footer from './components/Footer'
-
-
-const RedirectWithStatus = ({from, to , status}) =>{
-	<Route render = {({staticContext})=>{
-		if(staticContext)
-			staticContext.status = status
-		return <Redirect from={from} to={to} />
-	}}/>
-}
 
 class Routes extends React.Component {
     constructor(props) {
@@ -26,12 +24,14 @@ class Routes extends React.Component {
         	<Provider store={store}>
 				<Route render={({ location }) => {
 					return(
-						<div key={location.pathname} name={location.pathname}  style={{height:"100%",width:"100%",position:"absolute"}}>
-							<Route location={location} path="/" component={App} />
-                            <Route path="/guide/:guideName" component={HomeGuidePage} />
-                            <Route path="/server" component={HomeServerStatusPage} />
-                            <Route location={location} path="/events" component={EventsPage} />
-							<Route location={location} path="/" component={Footer} />
+						<div key={location.pathname} name={location.pathname}>
+							<Layout>
+								<Route location={location} path="/" component={Nav} />
+								<Route path="/guide/:guideName" component={HomeGuidePage} />
+								<Route path="/server" component={HomeServerStatusPage} />
+								<Route location={location} path="/events" component={EventsPage} />
+								<Route location={location} path="/" component={Footer} />
+							</Layout>
                         </div>
 					)
 				}}/>
