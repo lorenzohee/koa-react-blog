@@ -12,14 +12,17 @@ import {connect} from 'react-redux';
 const {Header} = Layout;
 
 class Nav extends Component{
-    state={
-        current: 'home'
-    };
+    constructor(props){
+        super(props);
+        this.state={
+            current: 'home'
+        }
+    }
     componentDidMount(){
         console.log(this.props.location)
     }
 
-    handleClick=(e)=>{
+    handleClick(e){
         this.setState({
             current: e.key
         })
