@@ -4,7 +4,6 @@ import HeaderNav from '../components/Header'
 import Main from '../components/Main'
 import { fetchStateIfNeeded } from '../actions/mirrorState'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 
 class App extends Component {
   static fetch (state, dispatch) {

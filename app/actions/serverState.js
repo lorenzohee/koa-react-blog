@@ -9,9 +9,8 @@ export const SERVER_STATE_REQUEST = 'SERVER_STATE_REQUEST'
 export const SERVER_STATE_SUCCEED = 'SERVER_STATE_SUCCEED'
 export const SERVER_STATE_FAILED = 'SERVER_STATE_FAILED'
 
-const fetchStateUrl = __SERVER__
-  ? `http://localhost:${require('../../platforms/common/config').port}/api/server`
-  : '/api/server'
+const fetchStateUrl = typeof(__SERVER__)=='undefined'
+  ? '/api/server' : `http://localhost:${require('../../platforms/common/config').port}/api/server`
 
 function fetchServerState() {
   return dispatch => {

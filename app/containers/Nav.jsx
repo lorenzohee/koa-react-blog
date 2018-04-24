@@ -16,7 +16,7 @@ class Nav extends Component{
         super(props);
         this.state={
             current: 'home'
-        }
+        };
     }
     componentDidMount(){
         console.log(this.props.location)
@@ -54,5 +54,5 @@ class Nav extends Component{
 }
 
 export default connect(
-    state=> state
+    state=> state.mirror
 )(Nav)
