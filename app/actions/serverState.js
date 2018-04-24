@@ -1,7 +1,8 @@
 /**
- * Created at 16/5/19.
- * @Author Ling.
- * @Email i@zeroling.com
+ * @Description server state action
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 2018-04-24 16:54:00
  */
 import fetch from 'isomorphic-fetch'
 

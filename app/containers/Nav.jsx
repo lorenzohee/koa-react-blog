@@ -9,8 +9,6 @@ import {Layout, Menu, Icon} from 'antd';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-const {Header} = Layout;
-
 class Nav extends Component{
     constructor(props){
         super(props);
@@ -22,17 +20,17 @@ class Nav extends Component{
         console.log(this.props.location)
     }
 
-    handleClick(e){
-        this.setState({
-            current: e.key
-        })
-    }
-
     render(){
-        return <Header>
-            <Menu theme='dark' mode='horizontal' onClick={this.handleClick} selectedKeys={[this.state.current]}>
-                <Menu.Item key='home'>Home</Menu.Item>
-                <Menu.Item key='good'>Good</Menu.Item>
+        const { location: { pathname } } = this.props
+        const headerCurrent = pathname === '/' ? 'home' : pathname.slice(1)
+        return <div>
+            <Menu theme='dark' mode='horizontal' selectedKeys={[headerCurrent]}>
+                <Menu.Item key='home'>
+                    <Link to='/home'>Home</Link>
+                </Menu.Item>
+                <Menu.Item key='good'>
+                    <Link to={'/good'}>Good</Link>
+                </Menu.Item>
                 <Menu.Item key="events">
                     <Link to='/events'>
                         <Icon type="bars" />事件通告
@@ -49,7 +47,7 @@ class Nav extends Component{
                     </Link>
                 </Menu.Item>
             </Menu>
-        </Header>
+        </div>
     }
 }
 

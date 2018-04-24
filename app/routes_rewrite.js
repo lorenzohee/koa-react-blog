@@ -1,9 +1,10 @@
 /**
- * @description Layout
+ * @Description Layout
  * @Author Lorenzo
  * @Email yongqinghee@163.com
  * @Time 2018-04-23 16:00:00
- */
+ * @Version 1.0.0
+ **/
 import { Provider } from 'react-redux'
 import {Route} from 'react-router-dom';
 import React from 'react'
@@ -39,6 +40,4 @@ class Routes extends React.Component {
         )
     }
 }
-
-
 export default Routes
