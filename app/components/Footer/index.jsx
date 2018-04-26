@@ -8,7 +8,7 @@ import { Col, Row } from 'antd';
 
 import './footer.less';
 
-export default class Footer extends Component {
+export default class FooterPage extends Component {
   render () {
     return (<footer id="footer">
       <Row className="footer-content">

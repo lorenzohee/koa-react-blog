@@ -5,7 +5,7 @@
  * @Time 2018-04-23 16:04:00
  */
 import React, {Component} from 'react';
-import {Layout, Menu, Icon} from 'antd';
+import {Menu, Icon} from 'antd';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -24,7 +24,8 @@ class Nav extends Component{
         const { location: { pathname } } = this.props
         const headerCurrent = pathname === '/' ? 'home' : pathname.slice(1)
         return <div>
-            <Menu theme='dark' mode='horizontal' selectedKeys={[headerCurrent]}>
+            <div className="logo">HOPE</div>
+            <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['home']} selectedKeys={[headerCurrent]} style={{ lineHeight: '64px' }}>
                 <Menu.Item key='home'>
                     <Link to='/home'>Home</Link>
                 </Menu.Item>

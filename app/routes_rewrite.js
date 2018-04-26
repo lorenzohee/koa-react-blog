@@ -8,35 +8,44 @@
 import { Provider } from 'react-redux'
 import {Route} from 'react-router-dom';
 import React from 'react'
-import Footer from './components/Footer';
+import FooterPage from './components/Footer';
 import {Layout} from 'antd';
 import Nav from './containers/Nav'
 import HomeGuidePage from './containers/HomeGuidePage';
 import HomeServerStatusPage from './containers/HomeStatus';
 import EventsPage from './containers/Events';
+import HomePage from './containers/HomePage';
 
 class Routes extends React.Component {
     constructor(props) {
         super(props)
     }
     render(){
+        const {Header, Content, Footer} = Layout;
         const { store } = this.props
         return (
-        	<Provider store={store}>
-				<Route render={({ location }) => {
-					return(
-						<div key={location.pathname} name={location.pathname}>
-							<Layout>
-								<Route location={location} path="/" component={Nav} />
-								<Route path="/guide/:guideName" component={HomeGuidePage} />
-								<Route path="/server" component={HomeServerStatusPage} />
-								<Route location={location} path="/events" component={EventsPage} />
-								<Route location={location} path="/" component={Footer} />
-							</Layout>
+            <Provider store={store}>
+                <Route render={({ location }) => {
+                    return(
+                        <div key={location.pathname} name={location.pathname}>
+                            <Layout className="layout">
+                                <Header>
+                                    <Route location={location} path="/" component={Nav} />
+                                </Header>
+                                <Content style={{ padding: '0 50px' }}>
+                                    <Route path='/home' component={HomePage} />
+                                    <Route path="/guide/:guideName" component={HomeGuidePage} />
+                                    <Route path="/server" component={HomeServerStatusPage} />
+                                    <Route location={location} path="/events" component={EventsPage} />
+                                </Content>
+                                <Footer style={{ textAlign: 'center' }}>
+                                    <Route location={location} path="/" component={FooterPage} />
+                                </Footer>
+                            </Layout>
                         </div>
-					)
-				}}/>
-			</Provider>
+                    )
+                }}/>
+            </Provider>
         )
     }
 }
