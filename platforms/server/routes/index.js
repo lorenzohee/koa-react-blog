@@ -1,8 +1,10 @@
 /**
- * Created at 16/5/19.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description router index
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-4-27 下午6:43
+ * @Version 1.0.0
+ **/
 export default async (ctx, next) => {
   // api server through koa-router
   if (ctx.path.match(/^\/api/)) {

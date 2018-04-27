@@ -1,11 +1,17 @@
+/**
+ * @Description server router
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-4-27 下午6:43
+ * @Version 1.0.0
+ **/
 import { Router, Route, IndexRoute, StaticRouter } from 'react-router-dom'
 import React from 'react'
 
 import ReactDOMServer from 'react-dom/server';
 import config from '../../common/config'
 import configureStore from '../../../app/store/configureStore'
-import Routes from '../../../app/routes_rewrite';
-import { matchPath } from 'react-router-dom';
+import Routes from '../../../app/routes';
 
 const store = configureStore()
 

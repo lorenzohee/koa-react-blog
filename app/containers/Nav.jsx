@@ -1,5 +1,5 @@
 /**
- * @Description {description}
+ * @Description nav page
  * @Author Lorenzo
  * @Email yongqinghee@163.com
  * @Time 2018-04-23 16:04:00
@@ -17,7 +17,7 @@ class Nav extends Component{
         };
     }
     componentDidMount(){
-        console.log(this.props.location)
+
     }
 
     render(){
@@ -28,9 +28,6 @@ class Nav extends Component{
             <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['home']} selectedKeys={[headerCurrent]} style={{ lineHeight: '64px' }}>
                 <Menu.Item key='home'>
                     <Link to='/home'>Home</Link>
-                </Menu.Item>
-                <Menu.Item key='good'>
-                    <Link to={'/good'}>Good</Link>
                 </Menu.Item>
                 <Menu.Item key="events">
                     <Link to='/events'>
