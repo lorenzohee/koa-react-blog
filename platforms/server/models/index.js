@@ -1,8 +1,10 @@
 /**
- * Created at 16/5/20.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description 
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-4-27 下午2:51
+ * @Version 1.0.0
+ **/
 import Sequelize from 'sequelize'
 import config from '../../common/config'
 

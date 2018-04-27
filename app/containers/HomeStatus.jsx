@@ -13,6 +13,7 @@ class HomeStatusPage extends Component {
   // 这里只做异步加载
   componentDidMount () {
     const { dispatch } = this.props
+      console.log('testestse')
     dispatch(fetchServerStateIfNeeded(this.props))
   }
 

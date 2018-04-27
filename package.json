@@ -97,6 +97,7 @@
     "marked": "^0.3.19",
     "mocha": "^5.1.0",
     "moment": "^2.22.1",
+    "mongodb": "^3.0.7",
     "monk": "^6.0.5",
     "normalize.css": "^8.0.0",
     "passport": "^0.4.0",

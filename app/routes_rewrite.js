@@ -15,6 +15,7 @@ import HomeGuidePage from './containers/HomeGuidePage';
 import HomeServerStatusPage from './containers/HomeStatus';
 import EventsPage from './containers/Events';
 import HomePage from './containers/HomePage';
+import UserList from "./containers/UserList";
 
 class Routes extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class Routes extends React.Component {
                                     <Route path='/home' component={HomePage} />
                                     <Route path="/guide/:guideName" component={HomeGuidePage} />
                                     <Route path="/server" component={HomeServerStatusPage} />
+                                    <Route path="/users" component={UserList} />
                                     <Route location={location} path="/events" component={EventsPage} />
                                 </Content>
                                 <Footer style={{ textAlign: 'center' }}>
