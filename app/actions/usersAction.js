@@ -13,8 +13,8 @@ export const USER_LIST_FAIL = 'USER_LIST_FAIL';
 const fetchUserUrl = typeof(__SERVER__)=='undefined' ? '/api/users' : `http://localhost:${require('../../platforms/common/config').port}/api/users`
 
 function fetchUsers(){
-    return dispath=>{
-        dispath(getUserRequest());
+    return dispatch=>{
+        dispatch(getUserRequest());
         return fetch(fetchUserUrl)
             .then(res=>res.json())
             .then(data=>{
@@ -23,20 +23,20 @@ function fetchUsers(){
                     error.response = response;
                     throw error;
                 }
-                dispath(userListGetSuccess(data.data))
+                dispatch(userListGetSuccess(data.data))
             })
             .catch(e=>{
-                dispath(userListGetFail(e))
+                dispatch(userListGetFail(e))
             })
     }
 }
 
 export function getUserList(state){
-    return (dispath)=>{
+    return (dispatch)=>{
         if(!state.loaded){
-            return dispath(fetchUsers())
+            return dispatch(fetchUsers())
         }
-        return dispath(userListGetSuccess(state.users))
+        return dispatch(userListGetSuccess(state.users))
     }
 }
 
