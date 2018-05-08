@@ -14,7 +14,7 @@ export const BLOG_POST_FAIL = 'BLOG_POST_FAIL';
 function postBlogService(blog){
     return dispatch=>{
         dispatch(postBlogRequest());
-        fetch('/api/blog', {method: 'POST', body: {title: blog.title, tag: blog.tag, content: blog.content}})
+        fetch('/api/blog/create', {method: 'POST', body: JSON.stringify({title: blog.title, tag: blog.tag, content: blog.content})})
             .then(res=>res.json())
             .then(data=>{
                 if('error' === data.state){

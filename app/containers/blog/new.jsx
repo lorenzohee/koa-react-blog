@@ -7,6 +7,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Form, Input, Button} from 'antd'
+import {postBlog} from '../../actions/blogAction'
 import './blog.less';
 
 class BlogNew extends Component{
@@ -17,9 +18,11 @@ class BlogNew extends Component{
 
     handleSubmit(e){
         e.preventDefault();
+        const {dispatch} = this.props;
         this.props.form.validateFields((err, values)=>{
             if(!err){
                 console.log('Received values of form:', values);
+                dispatch(postBlog(values))
             }
         })
     }
@@ -32,24 +35,32 @@ class BlogNew extends Component{
         const FormItem = Form.Item;
         const { TextArea } = Input;
         const {getFieldDecorator} = this.props.form;
-        return <Form onSubmit={this.handleSubmit.bind(this)} className="blog-new-form" >
-            <FormItem {...formItemLayout} label="标题">
-                {getFieldDecorator('title',{
-                    rules: [{required: true, message: 'Title is required!'}],
-                })(<Input placeholder="Please input blog title." />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="标签">
-                {getFieldDecorator('tags',{
-                    rules: [{required: true, message: 'tags is required!'}],
-                })(<Input placeholder="Please input blog tags." />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="内容">
-                {getFieldDecorator('content',{
-                    rules: [{required: true, message: 'content is required!'}],
-                })(<TextArea placeholder="Please input blog content." rows="10" />)}
-                <Button type='primary' htmlType="submit">Submit</Button>
-            </FormItem>
-        </Form>
+        return <div>
+                {this._postBlogSuccess()}
+                <Form onSubmit={this.handleSubmit.bind(this)} className="blog-new-form" >
+                    <FormItem {...formItemLayout} label="标题">
+                        {getFieldDecorator('title',{
+                            rules: [{required: true, message: 'Title is required!'}],
+                        })(<Input placeholder="Please input blog title." />)}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="标签">
+                        {getFieldDecorator('tags',{
+                            rules: [{required: true, message: 'tags is required!'}],
+                        })(<Input placeholder="Please input blog tags." />)}
+                    </FormItem>
+                    <FormItem {...formItemLayout} label="内容">
+                        {getFieldDecorator('content',{
+                            rules: [{required: true, message: 'content is required!'}],
+                        })(<TextArea placeholder="Please input blog content." rows="10" />)}
+                        <Button type='primary' htmlType="submit">Submit</Button>
+                    </FormItem>
+                </Form>
+            </div>
+    }
+    _postBlogSuccess(){
+        if(this.props.success){
+            // this.props.history.push(`/blogs/${this.props.blog.id}`)
+        }
     }
 }
 

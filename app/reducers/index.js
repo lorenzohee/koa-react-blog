@@ -9,9 +9,11 @@ import { combineReducers } from 'redux'
 import mirror from './mirrorState'
 import server from './serverState'
 import userReducer from './usersReducer'
+import blogReducer from './blogsReducer'
 
 export default combineReducers({
     mirror,
     server,
-    userReducer
+    userReducer,
+    blogReducer
 })
