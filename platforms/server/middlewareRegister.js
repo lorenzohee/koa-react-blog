@@ -8,6 +8,7 @@ import convert from 'koa-convert'
 import bodyParser from 'koa-bodyparser'
 import router from './routes'
 import config from '../common/config'
+import response_formatter from '../common/services/response_formatter'
 const templatePath = path.join(__dirname, './templates')
 
 export default (app) => {
@@ -21,6 +22,9 @@ export default (app) => {
 
   // template ejs
   app.use(views(templatePath, { extension: 'ejs' }))
+
+    //response formatter
+    app.use(response_formatter('^/api'))
 
   // router dispatcher
   app.use(router)

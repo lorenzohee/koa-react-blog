@@ -65,5 +65,5 @@ class BlogNew extends Component{
 }
 
 export default connect(
-    state=>state
+    state=>state.blogReducer
 )(Form.create()(BlogNew))

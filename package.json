@@ -81,6 +81,7 @@
     "highlight.js": "^9.12.0",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",

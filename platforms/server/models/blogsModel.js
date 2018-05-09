@@ -6,15 +6,35 @@
  */
 
 import monk from 'monk'
+import {ObjectID} from 'mongodb'
 
 const db = monk('localhost/myproject')
 
-export async function createBlog(blog){
-    return new Promise((resolve, reject)=>{
-        var blogCol = db.get('blogs')
-        blogCol.insert(blog).then(res=>{
-            console.log('db insert success and the blog is: '+res)
-            resolve(res)
+const blogModel = {
+    getBlogs: async ()=>{
+        return new Promise((resolve, reject)=>{
+            var blogCol = db.get('blogs');
+            blogCol.find({}, (err, doc)=>{
+                resolve(doc);
+            })
         })
-    })
+    },
+    createBlog: async (blog)=>{
+        return new Promise((resolve, reject)=>{
+            var blogCol = db.get('blogs')
+            blogCol.insert(JSON.parse(blog)).then(res=>{
+                resolve(res)
+            })
+        })
+    },
+    getBlogById: async (id)=>{
+        return new Promise((resolve, reject)=>{
+            var blogCol = db.get('blogs');
+            blogCol.findOne({_id: ObjectID(id)}, (err, doc)=>{
+                resolve(doc);
+            })
+        })
+    }
 }
+
+export default blogModel
