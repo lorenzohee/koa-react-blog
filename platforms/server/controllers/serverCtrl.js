@@ -8,6 +8,8 @@
  * @Time 18-4-24 下午5:49
  * @Version 1.0.0
  **/
+
+import test from '../models/test'
 const v = {}
 
 async function getDefaultNetInterface() {
@@ -39,6 +41,7 @@ function getVnstatConfig() {
 }
 
 export default async (ctx, next) => {
+  test();
   const returnData = {
     traffic: {
       days: [

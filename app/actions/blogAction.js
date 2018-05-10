@@ -7,9 +7,53 @@
 
 import fetch from 'isomorphic-fetch';
 
+export const BLOG_LIST_REQUEST = 'BLOG_LIST_REQUEST';
+export const BLOG_LIST_SUCCESS = 'BLOG_LIST_SUCCESS';
+export const BLOG_LIST_FAIL = 'BLOG_LIST_FAIL';
+export const BLOG_GET_REQUEST = 'BLOG_GET_REQUEST';
+export const BLOG_GET_SUCCESS = 'BLOG_GET_SUCCESS';
+export const BLOG_GET_FAIL = 'BLOG_GET_FAIL';
 export const BLOG_POST_REQUEST = 'BLOG_POST_REQUEST';
 export const BLOG_POST_SUCCESS = 'BLOG_POST_SUCCESS';
 export const BLOG_POST_FAIL = 'BLOG_POST_FAIL';
+
+function getBlogListService(){
+    return dispatch=>{
+        dispatch(getBlogListRequest());
+        fetch('/api/blogs')
+            .then(res=>res.json())
+            .then(data=>{
+                if('error'===data.state){
+                    const error = new Error(data.errorMsg);
+                    error.response = response;
+                    throw error;
+                }
+                dispatch(getBlogListSuccess(data.data))
+            })
+            .catch(e=>{
+                dispatch(getBlogListFail(e))
+            })
+    }
+}
+
+function getBlogByIdService(id){
+    return dispatch=>{
+        dispatch(getBlogByIdRequest());
+        fetch('/api/blog/'+id)
+            .then(res=>res.json())
+            .then(data=>{
+                if('error'===data.state){
+                    const error = new Error(data.errorMsg);
+                    error.response = response;
+                    throw error;
+                }
+                dispatch(getBlogByIdSuccess(data.data))
+            })
+            .catch(e=>{
+                dispatch(getBlogByIdFail(e))
+            })
+    }
+}
 
 function postBlogService(blog){
     return dispatch=>{
@@ -39,6 +83,50 @@ export function postBlog(blog){
     }
 }
 
+export function getBlogList(){
+    return dispatch => {
+        return dispatch(getBlogListService());
+    }
+}
+
+export function getBlogListRequest(){
+    return {
+        type: BLOG_LIST_REQUEST
+    }
+}
+
+export function getBlogListSuccess(blogs){
+    return {
+        type: BLOG_LIST_SUCCESS,
+        data: blogs
+    }
+}
+
+export function getBlogListFail(e){
+    return {
+        type: BLOG_LIST_FAIL
+    }
+}
+
+export function getBlogByIdRequest(){
+    return {
+        type: BLOG_GET_REQUEST
+    }
+}
+
+export function getBlogByIdSuccess(blog){
+    return {
+        type: BLOG_GET_SUCCESS,
+        data: blog
+    }
+}
+
+export function getBlogByIdFail(e){
+    return {
+        type: BLOG_GET_FAIL
+    }
+}
+
 export function postBlogSuccess(blog) {
     return {
         type: BLOG_POST_SUCCESS,
@@ -52,7 +140,7 @@ export function postBlogRequest(){
     }
 }
 
-export function postBlogFail() {
+export function postBlogFail(e) {
     return {
         type: BLOG_POST_FAIL
     }

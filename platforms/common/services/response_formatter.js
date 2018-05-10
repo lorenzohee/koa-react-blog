@@ -10,12 +10,14 @@ var response_formatter = (ctx) => {
     if (ctx.body) {
         ctx.body = {
             code: 0,
+            state: 'success',
             message: 'success',
             data: ctx.body
         }
     } else {
         ctx.body = {
             code: 0,
+            state: 'success',
             message: 'success'
         }
     }
@@ -33,6 +35,7 @@ var url_filter = function(pattern){
                 ctx.status = 200;
                 ctx.body = {
                     code: error.code,
+                    state: 'error',
                     message: error.message
                 }
             }
