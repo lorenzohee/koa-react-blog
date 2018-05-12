@@ -17,7 +17,6 @@ class UserList extends Component{
 
     componentDidMount(){
         const {dispatch} = this.props;
-        console.log('get user list container');
         dispatch(getUserList(this.props))
     }
 

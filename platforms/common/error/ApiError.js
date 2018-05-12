@@ -4,7 +4,7 @@
  * @Email yongqinghee@163.com
  * @Time 18-5-9 下午5:25
  */
-import ApiErrorNames from 'ApiErrorNames'
+import ApiErrorNames from './ApiErrorNames'
 
 class ApiError extends Error{
 

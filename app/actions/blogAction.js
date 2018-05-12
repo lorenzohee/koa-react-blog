@@ -123,7 +123,8 @@ export function getBlogByIdSuccess(blog){
 
 export function getBlogByIdFail(e){
     return {
-        type: BLOG_GET_FAIL
+        type: BLOG_GET_FAIL,
+        error: e
     }
 }
 
@@ -142,6 +143,7 @@ export function postBlogRequest(){
 
 export function postBlogFail(e) {
     return {
-        type: BLOG_POST_FAIL
+        type: BLOG_POST_FAIL,
+        error: e
     }
 }

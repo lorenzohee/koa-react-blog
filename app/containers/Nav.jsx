@@ -49,6 +49,11 @@ class Nav extends Component{
                         Users
                     </Link>
                 </Menu.Item>
+                <Menu.Item key="blogs">
+                    <Link to='/blogs'>
+                        Blogs
+                    </Link>
+                </Menu.Item>
             </Menu>
         </div>
     }

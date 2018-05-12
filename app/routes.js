@@ -17,6 +17,7 @@ import EventsPage from './containers/Events';
 import HomePage from './containers/HomePage';
 import UserList from "./containers/UserList";
 import BlogNewPage from './containers/blog/new';
+import BlogIndexPage from './containers/blog/index';
 
 class Routes extends React.Component {
     constructor(props) {
@@ -40,6 +41,7 @@ class Routes extends React.Component {
                                     <Route path="/server" component={HomeServerStatusPage} />
                                     <Route path="/users" component={UserList} />
                                     <Route location={location} path="/events" component={EventsPage} />
+                                    <Route location={location} path="/blogs" component={BlogIndexPage} />
                                     <Route path="/blog/new" component={BlogNewPage} />
                                 </Content>
                                 <Footer style={{ textAlign: 'center' }}>
