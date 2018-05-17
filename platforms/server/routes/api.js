@@ -19,7 +19,7 @@ router.get('/state', mirrorState)
 router.get('/server', serverState)
 router.get('/users', usersCtrl)
 router.post('/blog/create', koaBody(), postBlog)
-router.get('/blogs/:id', getBlogById)
+router.get('/blog/:id', getBlogById)
 router.get('/blogs', getBlogs)
 
 export default router

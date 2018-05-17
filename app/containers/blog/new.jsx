@@ -21,7 +21,6 @@ class BlogNew extends Component{
         const {dispatch} = this.props;
         this.props.form.validateFields((err, values)=>{
             if(!err){
-                console.log('Received values of form:', values);
                 dispatch(postBlog(values))
             }
         })
@@ -58,8 +57,8 @@ class BlogNew extends Component{
             </div>
     }
     _postBlogSuccess(){
-        if(this.props.success){
-            // this.props.history.push(`/blogs/${this.props.blog.id}`)
+        if(this.props.success && this.props.blog && this.props.blog._id){
+            this.props.history.push(`/blogs/${this.props.blog._id}`)
         }
     }
 }

@@ -4,7 +4,6 @@
  * @Email yongqinghee@163.com
  * @Time 18-5-2 下午4:59
  */
-
 import fetch from 'isomorphic-fetch';
 
 export const BLOG_LIST_REQUEST = 'BLOG_LIST_REQUEST';
@@ -89,6 +88,12 @@ export function getBlogList(){
     }
 }
 
+export function getBlogById(id){
+    return dispatch=>{
+        return dispatch(getBlogByIdService(id))
+    }
+}
+
 export function getBlogListRequest(){
     return {
         type: BLOG_LIST_REQUEST
@@ -131,7 +136,7 @@ export function getBlogByIdFail(e){
 export function postBlogSuccess(blog) {
     return {
         type: BLOG_POST_SUCCESS,
-        blog: blog
+        data: blog
     }
 }
 

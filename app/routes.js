@@ -18,6 +18,7 @@ import HomePage from './containers/HomePage';
 import UserList from "./containers/UserList";
 import BlogNewPage from './containers/blog/new';
 import BlogIndexPage from './containers/blog/index';
+import BlogShowPage from './containers/blog/show';
 
 class Routes extends React.Component {
     constructor(props) {
@@ -35,14 +36,15 @@ class Routes extends React.Component {
                                 <Header>
                                     <Route location={location} path="/" component={Nav} />
                                 </Header>
-                                <Content style={{ padding: '0 50px' }}>
-                                    <Route path='/home' component={HomePage} />
+                                <Content stylexacte={{ padding: '0 50px' }}>
+                                    <Route path='/home' exact component={HomePage} />
                                     <Route path="/guide/:guideName" component={HomeGuidePage} />
-                                    <Route path="/server" component={HomeServerStatusPage} />
-                                    <Route path="/users" component={UserList} />
+                                    <Route path="/server" exact component={HomeServerStatusPage} />
+                                    <Route path="/users" exact component={UserList} />
                                     <Route location={location} path="/events" component={EventsPage} />
-                                    <Route location={location} path="/blogs" component={BlogIndexPage} />
-                                    <Route path="/blog/new" component={BlogNewPage} />
+                                    <Route location={location} path="/blogs" exact component={BlogIndexPage} />
+                                    <Route path="/blog/new" exact component={BlogNewPage} />
+                                    <Route path="/blog/:id" component={BlogShowPage} />
                                 </Content>
                                 <Footer style={{ textAlign: 'center' }}>
                                     <Route location={location} path="/" component={FooterPage} />

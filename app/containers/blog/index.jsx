@@ -30,7 +30,7 @@ class BlogIndex extends Component{
                 {
                     blogs && blogs.reverse().map((item, key) => (
                         <li key={key}>
-                            <p>{item.title} -- {item.tag}</p>
+                            <p><Link to={'/blog/'+item._id} >{item.title}</Link> -- {item.content}</p>
                         </li>
                     ))
                 }
