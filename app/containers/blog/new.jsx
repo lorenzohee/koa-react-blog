@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Form, Input, Button} from 'antd'
-import {postBlog} from '../../actions/blogAction'
+import {postBlog, postBlogNew} from '../../actions/blogAction'
 import './blog.less';
 
 class BlogNew extends Component{
@@ -18,12 +18,17 @@ class BlogNew extends Component{
 
     handleSubmit(e){
         e.preventDefault();
-        const {dispatch} = this.props;
+        const {dispatch, history} = this.props;
         this.props.form.validateFields((err, values)=>{
             if(!err){
-                dispatch(postBlog(values))
+                dispatch(postBlog({blog: values, history: history}))
             }
         })
+    }
+
+    componentWillMount(){
+        const {dispatch} = this.props;
+        dispatch(postBlogNew())
     }
 
     render(){
@@ -35,7 +40,6 @@ class BlogNew extends Component{
         const { TextArea } = Input;
         const {getFieldDecorator} = this.props.form;
         return <div>
-                {this._postBlogSuccess()}
                 <Form onSubmit={this.handleSubmit.bind(this)} className="blog-new-form" >
                     <FormItem {...formItemLayout} label="标题">
                         {getFieldDecorator('title',{
@@ -55,6 +59,10 @@ class BlogNew extends Component{
                     </FormItem>
                 </Form>
             </div>
+    }
+
+    componentWillUpdate(){
+        // this._postBlogSuccess()
     }
     _postBlogSuccess(){
         if(this.props.success && this.props.blog && this.props.blog._id){

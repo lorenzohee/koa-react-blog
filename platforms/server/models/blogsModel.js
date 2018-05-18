@@ -34,6 +34,16 @@ const blogModel = {
                 resolve(doc);
             })
         })
+    },
+    deleteById: async (id)=>{
+        return new Promise((resolve, reject)=>{
+            var blogCol = db.get('blogs');
+            blogCol.findOne({_id: ObjectID(id)}, (err, doc)=>{
+                blogCol.remove({_id: ObjectID(id)}, ()=>{
+                    resolve(doc);
+                })
+            })
+        })
     }
 }
 

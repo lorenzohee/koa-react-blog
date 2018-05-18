@@ -15,6 +15,10 @@ export const BLOG_GET_FAIL = 'BLOG_GET_FAIL';
 export const BLOG_POST_REQUEST = 'BLOG_POST_REQUEST';
 export const BLOG_POST_SUCCESS = 'BLOG_POST_SUCCESS';
 export const BLOG_POST_FAIL = 'BLOG_POST_FAIL';
+export const BLOG_POST_NEW = 'BLOG_POST_NEW';
+export const BLOG_DELETE_REQUEST = 'BLOG_DELETE_REQUEST';
+export const BLOG_DELETE_SUCCESS = 'BLOG_DELETE_SUCCESS';
+export const BLOG_DELETE_FAIL = 'BLOG_DELETE_FAIL';
 
 function getBlogListService(){
     return dispatch=>{
@@ -54,7 +58,8 @@ function getBlogByIdService(id){
     }
 }
 
-function postBlogService(blog){
+function postBlogService(object){
+    const blog = object.blog
     return dispatch=>{
         dispatch(postBlogRequest());
         fetch('/api/blog/create', {method: 'POST', body: JSON.stringify({title: blog.title, tag: blog.tag, content: blog.content})})
@@ -65,7 +70,8 @@ function postBlogService(blog){
                     error.response = response;
                     throw error;
                 }
-                dispatch(postBlogSuccess(data.data))
+                object.history.push(`/blog/${data.data._id}`)
+                // dispatch(postBlogSuccess(data.data))
             })
             .catch(e=>{
                 dispatch(postBlogFail(e))
@@ -73,12 +79,31 @@ function postBlogService(blog){
     }
 }
 
-export function postBlog(blog){
+function deleteBlogService(id){
+    return dispatch=>{
+        dispatch(deleteBlogRequest());
+        fetch(`/api/blog/${id}`, {method: 'DELETE'})
+            .then(res=>res.json())
+            .then(data=>{
+                if('error' === data.state){
+                    const error = new Error(data.errorMsg);
+                    error.response = response;
+                    throw error;
+                }
+                dispatch(getBlogListService())
+            })
+            .catch(e=>{
+                dispatch(deleteBlogFail())
+            })
+    }
+}
+
+export function postBlog(object){
     return (dispatch)=>{
-        if(!blog.posted){
-            return dispatch(postBlogService(blog))
+        if(!object.blog.posted){
+            return dispatch(postBlogService(object))
         }
-        return dispatch(postBlogSuccess(blog))
+        return dispatch(postBlogSuccess(object.blog))
     }
 }
 
@@ -91,6 +116,12 @@ export function getBlogList(){
 export function getBlogById(id){
     return dispatch=>{
         return dispatch(getBlogByIdService(id))
+    }
+}
+
+export function deleteBlog(id) {
+    return dispatch=>{
+        return dispatch(deleteBlogService(id))
     }
 }
 
@@ -150,5 +181,30 @@ export function postBlogFail(e) {
     return {
         type: BLOG_POST_FAIL,
         error: e
+    }
+}
+
+export function postBlogNew(){
+    return {
+        type: BLOG_POST_NEW
+    }
+}
+
+export function deleteBlogRequest(){
+    return {
+        type: BLOG_DELETE_REQUEST
+    }
+}
+
+export function deleteBlogSuccess(blog) {
+    return {
+        type: BLOG_DELETE_SUCCESS,
+        data: blog
+    }
+}
+
+export function deleteBlogFail() {
+    return {
+        type: BLOG_DELETE_FAIL
     }
 }

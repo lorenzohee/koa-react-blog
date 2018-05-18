@@ -5,7 +5,18 @@
  * @Time 18-5-8 下午3:52
  */
 
-import {BLOG_LIST_REQUEST, BLOG_LIST_SUCCESS, BLOG_LIST_FAIL, BLOG_GET_REQUEST, BLOG_GET_SUCCESS, BLOG_GET_FAIL, BLOG_POST_REQUEST, BLOG_POST_SUCCESS, BLOG_POST_FAIL} from '../actions/blogAction'
+import {
+    BLOG_LIST_REQUEST,
+    BLOG_LIST_SUCCESS,
+    BLOG_LIST_FAIL,
+    BLOG_GET_REQUEST,
+    BLOG_GET_SUCCESS,
+    BLOG_GET_FAIL,
+    BLOG_POST_REQUEST,
+    BLOG_POST_SUCCESS,
+    BLOG_POST_FAIL,
+    BLOG_POST_NEW, BLOG_DELETE_REQUEST, BLOG_DELETE_SUCCESS, BLOG_DELETE_FAIL
+} from '../actions/blogAction'
 
 export default (state={}, action)=>{
     switch (action.type){
@@ -27,6 +38,14 @@ export default (state={}, action)=>{
             return {...state, loaded: true, success: true, blog: action.data}
         case BLOG_POST_FAIL:
             return {...state, loaded: true, success: false, error: action.error }
+        case BLOG_POST_NEW:
+            return {...state, success: false}
+        case BLOG_DELETE_REQUEST:
+            return {...state, loaded: false}
+        case BLOG_DELETE_SUCCESS:
+            return {...state, loaded: true, success: true}
+        case BLOG_DELETE_FAIL:
+            return {...state, loaded: true, success: false}
         default:
             return state
     }

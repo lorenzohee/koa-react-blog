@@ -7,12 +7,14 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {Icon} from 'antd'
 import {getBlogList} from '../../actions/blogAction'
 import './blog.less'
 
 class BlogIndex extends Component{
     constructor(props){
         super(props)
+        this.deleteListner = this.deleteListner.bind(this)
     }
 
     componentWillMount(){}
@@ -30,12 +32,16 @@ class BlogIndex extends Component{
                 {
                     blogs && blogs.reverse().map((item, key) => (
                         <li key={key}>
-                            <p><Link to={'/blog/'+item._id} >{item.title}</Link> -- {item.content}</p>
+                            <p><Link to={'/blog/'+item._id} >{item.title}</Link> <Icon type="delete" onClick={this.deleteListner} />-- {item.content}</p>
                         </li>
                     ))
                 }
         	</ul>
         </div>
+    }
+
+    deleteListner(id){
+        console.log('delete'+JSON.stringify(id))
     }
 }
 

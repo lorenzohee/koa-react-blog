@@ -9,7 +9,7 @@ import Router from 'koa-router'
 import mirrorState from '../controllers/stateCtrl'
 import serverState from '../controllers/serverCtrl'
 import usersCtrl from '../controllers/usersCtrl'
-import {getBlogs, postBlog, getBlogById} from "../controllers/blogsCtrl";
+import {getBlogs, postBlog, getBlogById, deleteById} from "../controllers/blogsCtrl";
 import koaBody from 'koa-body'
 
 const router = new Router()
@@ -21,5 +21,6 @@ router.get('/users', usersCtrl)
 router.post('/blog/create', koaBody(), postBlog)
 router.get('/blog/:id', getBlogById)
 router.get('/blogs', getBlogs)
+router.del('/blog/:id', deleteById)
 
 export default router
