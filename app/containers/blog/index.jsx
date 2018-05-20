@@ -27,12 +27,12 @@ class BlogIndex extends Component{
     render(){
     	const blogs = this.props.blogs;
         return <div>
-        	<Link to="/blog/new">新建</Link>
-        	<ul>
+        	<Link to="/blog/new" style={{display: 'inline-block', margin: '10px 0 10px', border: '1px solid #dcdcdc', padding: '4px 12px'}}>新建</Link>
+        	<ul className="index_content">
                 {
                     blogs && blogs.reverse().map((item, key) => (
                         <li key={key}>
-                            <p><Link to={'/blog/'+item._id} >{item.title}</Link> <Icon type="delete" onClick={this.deleteListner} />-- {item.content}</p>
+                            <p><Link to={'/blog/'+item._id} style={{fontSize: '18px'}} >{item.title}</Link> <Icon type="delete" onClick={this.deleteListner} style={{fontSize: '12px'}} />-- {item.content}</p>
                         </li>
                     ))
                 }
