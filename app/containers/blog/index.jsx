@@ -8,7 +8,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Icon} from 'antd'
-import {getBlogList} from '../../actions/blogAction'
+import {getBlogList, deleteBlog} from '../../actions/blogAction'
 import './blog.less'
 
 class BlogIndex extends Component{
@@ -32,7 +32,7 @@ class BlogIndex extends Component{
                 {
                     blogs && blogs.reverse().map((item, key) => (
                         <li key={key}>
-                            <p><Link to={'/blog/'+item._id} style={{fontSize: '18px'}} >{item.title}</Link> <Icon type="delete" onClick={this.deleteListner} style={{fontSize: '12px'}} />-- {item.content}</p>
+                            <p><Link to={'/blog/'+item._id} style={{fontSize: '18px'}} >{item.title}</Link> <Icon type="delete" onClick={this.deleteListner} id={item._id} style={{fontSize: '12px'}} />-- {item.content}</p>
                         </li>
                     ))
                 }
@@ -40,8 +40,9 @@ class BlogIndex extends Component{
         </div>
     }
 
-    deleteListner(id){
-        console.log('delete'+JSON.stringify(id))
+    deleteListner(event){
+        const {dispatch} = this.props;
+        dispatch(deleteBlog(event.target.id))
     }
 }
 

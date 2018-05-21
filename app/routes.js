@@ -37,7 +37,7 @@ class Routes extends React.Component {
                                 <Header>
                                     <Route location={location} path="/" component={Nav} />
                                 </Header>
-                                <Content style={{ padding: '0 50px' }}>
+                                <Content style={{ display: 'inline-block', width: '100%', padding: '0 50px' }}>
                                     <div className='pageContent'>
                                         <div style={{marginRight: '340px'}} >
                                             <Route path='/home' exact component={HomePage} />
@@ -47,7 +47,8 @@ class Routes extends React.Component {
                                             <Route location={location} path="/events" component={EventsPage} />
                                             <Route location={location} path="/blogs" exact component={BlogIndexPage} />
                                             <Route path="/blog/new" exact component={BlogNewPage} />
-                                            <Route path="/blog/:id" component={BlogShowPage} />
+                                            <Route path="/blog/show/:id" component={BlogShowPage} />
+                                            <Route path="/blog/edit/:id" component={BlogShowPage} />
                                         </div>
                                     </div>
                                     <div className='sideBar'>right</div>

@@ -24,8 +24,7 @@ class Nav extends Component{
         const { location: { pathname } } = this.props
         const headerCurrent = pathname === '/' ? 'home' : pathname.slice(1)
         return <div>
-            <div className="logo">HOPE</div>
-            <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['home']} selectedKeys={[headerCurrent]} style={{ lineHeight: '64px' }}>
+            <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['home']} selectedKeys={[headerCurrent]}>
                 <Menu.Item key='home'>
                     <Link to='/home'>Home</Link>
                 </Menu.Item>

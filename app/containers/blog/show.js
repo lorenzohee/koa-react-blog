@@ -7,6 +7,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import {getBlogById} from "../../actions/blogAction";
+const ReactMarkdown = require('react-markdown')
 
 class BlogShow extends Component{
     constructor(props){
@@ -24,7 +25,10 @@ class BlogShow extends Component{
     render(){
         const blog = this.props.blog;
         return <div>
-            <div>{blog && blog.title}</div>
+            <div className='' style={{textAlign: 'center'}}>
+                <h2>{blog && blog.title}</h2>
+            </div>
+            <div><ReactMarkdown source={blog && blog.content}/></div>
         </div>
     }
 }
