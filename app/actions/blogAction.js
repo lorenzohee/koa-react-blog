@@ -19,6 +19,9 @@ export const BLOG_POST_NEW = 'BLOG_POST_NEW';
 export const BLOG_DELETE_REQUEST = 'BLOG_DELETE_REQUEST';
 export const BLOG_DELETE_SUCCESS = 'BLOG_DELETE_SUCCESS';
 export const BLOG_DELETE_FAIL = 'BLOG_DELETE_FAIL';
+export const BLOG_EDIT_REQUEST = 'BLOG_EDIT_REQUEST';
+export const BLOG_EDIT_SUCCESS = 'BLOG_EDIT_SUCCESS';
+export const BLOG_EDIT_FAIL = 'BLOG_EDIT_FAIL';
 
 function getBlogListService(){
     return dispatch=>{
@@ -59,10 +62,9 @@ function getBlogByIdService(id){
 }
 
 function postBlogService(object){
-    const blog = object.blog
     return dispatch=>{
         dispatch(postBlogRequest());
-        fetch('/api/blog/create', {method: 'POST', body: JSON.stringify({title: blog.title, tag: blog.tag, content: blog.content})})
+        fetch('/api/blog/create', {method: 'POST', body: JSON.stringify(object.blog)})
             .then(res=>res.json())
             .then(data=>{
                 if('error' === data.state){
@@ -75,6 +77,25 @@ function postBlogService(object){
             })
             .catch(e=>{
                 dispatch(postBlogFail(e))
+            })
+    }
+}
+
+function putBlogService(object){
+    return dispatch=>{
+        dispatch(editBlogRequest());
+        fetch(`api/blog/edit/${object.id}`, {method: 'PUT', body: JSON.stringify(object.blog)})
+            .then(res=>res.json())
+            .then(data=>{
+                if('error' === data.state){
+                    const error = new Error(data.errorMsg);
+                    error.response = response;
+                    throw error;
+                }
+                object.history.push(`/blog/${data.data._id}`)
+            })
+            .catch(e=>{
+                dispatch(editBlogFail(e))
             })
     }
 }
@@ -116,6 +137,12 @@ export function getBlogList(){
 export function getBlogById(id){
     return dispatch=>{
         return dispatch(getBlogByIdService(id))
+    }
+}
+
+export function editBlog(object){
+    return dispatch=>{
+        return dispatch(putBlogService(object))
     }
 }
 
@@ -203,8 +230,29 @@ export function deleteBlogSuccess(blog) {
     }
 }
 
-export function deleteBlogFail() {
+export function deleteBlogFail(e) {
     return {
-        type: BLOG_DELETE_FAIL
+        type: BLOG_DELETE_FAIL,
+        error: e
+    }
+}
+
+export function editBlogRequest(){
+    return {
+        type: BLOG_EDIT_REQUEST
+    }
+}
+
+export function editBlogSuccess(blog){
+    return {
+        type: BLOG_EDIT_SUCCESS,
+        data: blog
+    }
+}
+
+export function editBlogFail(e){
+    return {
+        type: BLOG_EDIT_FAIL,
+        error: e
     }
 }

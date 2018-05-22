@@ -17,6 +17,7 @@ import UserList from "./containers/UserList";
 import BlogNewPage from './containers/blog/new';
 import BlogIndexPage from './containers/blog/index';
 import BlogShowPage from './containers/blog/show';
+import BlogEditPage from './containers/blog/edit';
 import './common/global.less'
 
 class Routes extends React.Component {
@@ -44,7 +45,7 @@ class Routes extends React.Component {
                                             <Route location={location} path="/blogs" exact component={BlogIndexPage} />
                                             <Route path="/blog/new" exact component={BlogNewPage} />
                                             <Route path="/blog/show/:id" component={BlogShowPage} />
-                                            <Route path="/blog/edit/:id" component={BlogShowPage} />
+                                            <Route path="/blog/edit/:id" component={BlogEditPage} />
                                         </div>
                                     </div>
                                     <div className='sideBar'>right</div>
