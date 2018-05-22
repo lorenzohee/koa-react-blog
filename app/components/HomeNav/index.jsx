@@ -1,8 +1,10 @@
 /**
- * Created at 16/3/22.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description nav file
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:13
+ * @Version 1.0.0
+ **/
 import React, { Component, PropTypes } from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router';

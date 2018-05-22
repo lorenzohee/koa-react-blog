@@ -25,10 +25,12 @@ class BlogShow extends Component{
     render(){
         const blog = this.props.blog;
         return <div>
-            <div className='' style={{textAlign: 'center'}}>
-                <h2>{blog && blog.title}</h2>
+            <div style={{display: 'inline-block', width: '100%'}}>
+                <div className='blog_show_title'>
+                    {blog && blog.title}
+                </div>
+                <div className='blog_show_content'><ReactMarkdown source={blog && blog.content}/></div>
             </div>
-            <div><ReactMarkdown source={blog && blog.content}/></div>
         </div>
     }
 }

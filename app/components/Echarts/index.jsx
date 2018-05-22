@@ -1,8 +1,10 @@
 /**
- * Created at 16/6/17.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description 
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:41
+ * @Version 1.0.0
+ **/
 import React, { Component } from 'react'
 import elementResizeEvent from 'element-resize-event'
 import echarts from 'echarts/lib/echarts'

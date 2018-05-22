@@ -1,3 +1,10 @@
+/**
+ * @Description
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:16
+ * @Version 1.0.0
+ **/
 var fs = require('fs')
 var path = require('path')
 try {

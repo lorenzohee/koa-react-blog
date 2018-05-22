@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+/**
+ * @Description
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:16
+ * @Version 1.0.0
+ **/
 console.log('Waiting for webpacking ...')
 require('babel-polyfill')
 require('babel-core/register')({

@@ -2,7 +2,9 @@
  * @Description redux store add chrome plugin listener
  * @Author Lorenzo
  * @Email yongqinghee@163.com
- */
+ * @Time 18-5-22 下午6:14
+ * @Version 1.0.0
+ **/
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers'

@@ -6,7 +6,6 @@
  * @Version 1.0.0
  **/
 import Router from 'koa-router'
-import mirrorState from '../controllers/stateCtrl'
 import serverState from '../controllers/serverCtrl'
 import usersCtrl from '../controllers/usersCtrl'
 import {getBlogs, postBlog, getBlogById, deleteById} from "../controllers/blogsCtrl";
@@ -15,7 +14,6 @@ import koaBody from 'koa-body'
 const router = new Router()
 router.prefix('/api')
 
-router.get('/state', mirrorState)
 router.get('/server', serverState)
 router.get('/users', usersCtrl)
 router.post('/blog/create', koaBody(), postBlog)

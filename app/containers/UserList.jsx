@@ -1,9 +1,10 @@
 /**
- * @Description {description}
+ * @Description
  * @Author Lorenzo
  * @Email yongqinghee@163.com
- * @Time $
- */
+ * @Time 18-5-22 下午6:15
+ * @Version 1.0.0
+ **/
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getUserList} from '../actions/usersAction'
@@ -33,7 +34,7 @@ class UserList extends Component{
                     <h2># 用户列表</h2>
                     <Timeline>
                         {
-                            users && users.reverse().map((event, key) => (
+                            users && users.data.reverse().map((event, key) => (
                                 <TimelineItem key={key}>
                                     <p>{event.name} -- {event.email}</p>
                                 </TimelineItem>

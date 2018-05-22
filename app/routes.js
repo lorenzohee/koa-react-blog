@@ -11,9 +11,7 @@ import React from 'react'
 import FooterPage from './components/Footer';
 import {Layout} from 'antd';
 import Nav from './containers/Nav'
-import HomeGuidePage from './containers/HomeGuidePage';
 import HomeServerStatusPage from './containers/HomeStatus';
-import EventsPage from './containers/Events';
 import HomePage from './containers/HomePage';
 import UserList from "./containers/UserList";
 import BlogNewPage from './containers/blog/new';
@@ -37,14 +35,12 @@ class Routes extends React.Component {
                                 <Header>
                                     <Route location={location} path="/" component={Nav} />
                                 </Header>
-                                <Content style={{ display: 'inline-block', width: '100%', padding: '0 50px' }}>
+                                <Content style={{ width: '960px', margin: '20px auto' }}>
                                     <div className='pageContent'>
-                                        <div style={{marginRight: '340px'}} >
+                                        <div>
                                             <Route path='/home' exact component={HomePage} />
-                                            <Route path="/guide/:guideName" component={HomeGuidePage} />
                                             <Route path="/server" exact component={HomeServerStatusPage} />
                                             <Route path="/users" exact component={UserList} />
-                                            <Route location={location} path="/events" component={EventsPage} />
                                             <Route location={location} path="/blogs" exact component={BlogIndexPage} />
                                             <Route path="/blog/new" exact component={BlogNewPage} />
                                             <Route path="/blog/show/:id" component={BlogShowPage} />

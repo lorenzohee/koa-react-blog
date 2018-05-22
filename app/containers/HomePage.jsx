@@ -1,9 +1,10 @@
 /**
- * @Description {description}
+ * @Description
  * @Author Lorenzo
  * @Email yongqinghee@163.com
- * @Time $
- */
+ * @Time 18-5-22 下午6:14
+ * @Version 1.0.0
+ **/
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 

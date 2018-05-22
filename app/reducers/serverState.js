@@ -1,8 +1,10 @@
 /**
- * Created at 16/5/19.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description 
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:35
+ * @Version 1.0.0
+ **/
 import { SERVER_STATE_FAILED, SERVER_STATE_SUCCEED, SERVER_STATE_REQUEST } from '../actions/serverState'
 
 export default (state = {}, action) => {

@@ -1,8 +1,10 @@
 /**
- * Created at 16/3/19.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description 
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:31
+ * @Version 1.0.0
+ **/
 import React, { Component } from 'react';
 import { Spin } from 'antd';
 import Echarts from '../components/Echarts'
@@ -27,7 +29,7 @@ class HomeStatusPage extends Component {
     }
 
     const { serverData, serverConfig } = server
-    const trafficDays = serverData.traffic.days.slice(0, 7).reverse()
+    const trafficDays = serverData.data.traffic.days.slice(0, 7).reverse()
     const dayOpt = {
       title: {
         text: '流量'

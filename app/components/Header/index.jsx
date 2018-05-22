@@ -1,8 +1,10 @@
 /**
- * Created at 16/5/17.
- * @Author Ling.
- * @Email i@zeroling.com
- */
+ * @Description header file
+ * @Author Lorenzo
+ * @Email yongqinghee@163.com
+ * @Time 18-5-22 下午6:13
+ * @Version 1.0.0
+ **/
 import React, { Component, PropTypes} from 'react'
 import { Link } from 'react-router-dom'
 import './header.less'
