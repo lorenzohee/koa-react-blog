@@ -45,6 +45,16 @@ const blogModel = {
                 })
             })
         })
+    },
+    updateBlog: async (id, blog)=>{
+        return new Promise((resolve, reject)=>{
+            var blogCol = db.get('blogs');
+            blogCol.update({_id: ObjectID(id)}, blog).then(
+                res=>{
+                    resolve(res)
+                }
+            ).catch(e=>reject(e))
+        })
     }
 }
 

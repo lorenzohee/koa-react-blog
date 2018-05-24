@@ -26,3 +26,9 @@ export async function deleteById(ctx) {
     const blog = await blogModel.deleteById(ctx.params.id);
     ctx.body=blog
 }
+
+export async function updateBlogById(ctx) {
+    const blog = await blogModel.updateBlog(ctx.params.id, ctx.request.body)
+    ctx.body=blog
+
+}
