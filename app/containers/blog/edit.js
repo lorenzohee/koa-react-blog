@@ -13,6 +13,7 @@ import './blog.less';
 class BlogEdit extends Component{
     constructor(props){
         super(props);
+        this.handleSubmit=this.handleSubmit.bind(this)
     }
 
 
@@ -24,12 +25,12 @@ class BlogEdit extends Component{
         dispatch(getBlogById(id))
     }
 
-    handleSubmit(){
+    handleSubmit(e){
         e.preventDefault();
-        const {dispatch, history} = this.props;
+        const {dispatch, history, blog} = this.props;
         this.props.form.validateFields((err, values)=>{
             if(!err){
-                dispatch(editBlog({blog: values, history: history}))
+                dispatch(editBlog({blog: values, history: history, id: blog._id}))
             }
         })
     }
@@ -37,7 +38,7 @@ class BlogEdit extends Component{
     render(){
         const formItemLayout = {
             labelCol: { span: 4 },
-            wrapperCol: { span: 8 },
+            wrapperCol: { span: 18 },
         };
         const blog = this.props.blog;
         const FormItem = Form.Item;
@@ -46,19 +47,19 @@ class BlogEdit extends Component{
         return <div>
             <Form onSubmit={this.handleSubmit.bind(this)} className="blog-new-form" >
                 <FormItem {...formItemLayout} label="标题">
-                    {getFieldDecorator('title',{
+                    {getFieldDecorator('title',{initialValue: (blog && blog.title)},{
                         rules: [{required: true, message: 'Title is required!'}],
-                    })(<Input placeholder="Please input blog title." value={blog && blog.title} />)}
+                    })(<Input placeholder="Please input blog title." />)}
                 </FormItem>
                 <FormItem {...formItemLayout} label="标签">
-                    {getFieldDecorator('tags',{
+                    {getFieldDecorator('tags',{initialValue: (blog && blog.tags)},{
                         rules: [{required: true, message: 'tags is required!'}],
-                    })(<Input placeholder="Please input blog tags." value={blog && blog.tags} />)}
+                    })(<Input placeholder="Please input blog tags."  />)}
                 </FormItem>
                 <FormItem {...formItemLayout} label="内容">
-                    {getFieldDecorator('content',{
+                    {getFieldDecorator('content',{initialValue: (blog && blog.content)},{
                         rules: [{required: true, message: 'content is required!'}],
-                    })(<TextArea placeholder="Please input blog content." rows="10" value={blog && blog.content} />)}
+                    })(<TextArea placeholder="Please input blog content." rows="10" />)}
                     <Button type='primary' htmlType="submit">Submit</Button>
                 </FormItem>
             </Form>

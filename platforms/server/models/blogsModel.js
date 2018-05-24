@@ -22,6 +22,7 @@ const blogModel = {
     createBlog: async (blog)=>{
         return new Promise((resolve, reject)=>{
             var blogCol = db.get('blogs')
+            console.log(blog+'!!!!!!!!!!!!')
             blogCol.insert(JSON.parse(blog)).then(res=>{
                 resolve(res)
             })

@@ -72,7 +72,7 @@ function postBlogService(object){
                     error.response = response;
                     throw error;
                 }
-                object.history.push(`/blog/${data.data._id}`)
+                object.history.push(`/blog/show/${data.data._id}`)
                 // dispatch(postBlogSuccess(data.data))
             })
             .catch(e=>{

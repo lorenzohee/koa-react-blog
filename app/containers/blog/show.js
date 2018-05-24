@@ -6,7 +6,11 @@
  */
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom'
 import {getBlogById} from "../../actions/blogAction";
+import {Icon} from 'antd'
+import './blog.less'
+
 const ReactMarkdown = require('react-markdown')
 
 class BlogShow extends Component{
@@ -28,6 +32,9 @@ class BlogShow extends Component{
             <div style={{display: 'inline-block', width: '100%'}}>
                 <div className='blog_show_title'>
                     {blog && blog.title}
+                    <Link to={'/blog/edit/'+(blog && blog._id)}>
+                        <Icon type="edit" className='blog_edit_button' />
+                    </Link>
                 </div>
                 <div className='blog_show_content'><ReactMarkdown source={blog && blog.content}/></div>
             </div>

@@ -34,7 +34,7 @@ class BlogNew extends Component{
     render(){
         const formItemLayout = {
             labelCol: { span: 4 },
-            wrapperCol: { span: 8 },
+            wrapperCol: { span: 18 },
         };
         const FormItem = Form.Item;
         const { TextArea } = Input;
@@ -47,7 +47,7 @@ class BlogNew extends Component{
                         })(<Input placeholder="Please input blog title." />)}
                     </FormItem>
                     <FormItem {...formItemLayout} label="标签">
-                        {getFieldDecorator('tags',{
+                        {getFieldDecorator('tag',{
                             rules: [{required: true, message: 'tags is required!'}],
                         })(<Input placeholder="Please input blog tags." />)}
                     </FormItem>

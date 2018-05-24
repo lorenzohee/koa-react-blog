@@ -59,5 +59,5 @@ class Nav extends Component{
 }
 
 export default connect(
-    state=> state.mirror
+    state=> state
 )(Nav)

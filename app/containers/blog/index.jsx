@@ -7,7 +7,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Icon} from 'antd'
+import {Modal, Icon} from 'antd'
 import {getBlogList, deleteBlog} from '../../actions/blogAction'
 const ReactMarkdown = require('react-markdown')
 import './blog.less'
@@ -30,13 +30,14 @@ class BlogIndex extends Component{
         return <div>
             <div style={{display: 'inline-block', width: '100%'}}>
         	<Link to="/blog/new" style={{float: 'right', margin: '10px', border: '1px solid #dcdcdc', padding: '4px 12px'}}>新建</Link>
+                {/*<Button onClick={this.deleteListner} >delete</Button>*/}
             </div>
             {
                 blogs && blogs.reverse().map((item, key) => (
                     <div key={key} className='blog_list_item'>
                         <div className='blog_list_item_title'>
                             <Link to={'/blog/show/'+item._id} >{item.title}</Link>
-                            <Icon type="delete" onClick={this.deleteListner} id={item._id} className='hide' />
+                            <Icon type="delete" onClick={this.deleteListner} id={item._id} className='blog_delete_button' />
                         </div>
                         <div className='blog_list_item_sub_title'>
                             <Icon type="clock" /> 2018-05-12 12:25:32
@@ -54,8 +55,17 @@ class BlogIndex extends Component{
     }
 
     deleteListner(event){
+        const deleteId = event.target.id
+        const confirm = Modal.confirm;
         const {dispatch} = this.props;
-        dispatch(deleteBlog(event.target.id))
+        confirm({
+            title: '确认要删除吗？',
+            content: '删除后，数据将不可恢复',
+            onOk() {
+                return dispatch(deleteBlog(deleteId));
+            },
+            onCancel() {},
+        });
     }
 }
 
