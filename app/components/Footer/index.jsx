@@ -19,11 +19,11 @@ export default class FooterPage extends Component {
           <a target="_blank" href="https://github.com/lorenzohee/koa-react-blog">仓库</a>
         </Col>
         <Col span="6" style={{padding: '5px 2% 15px'}}>
-          <h2>关于我们</h2>
+          <h2>关于我</h2>
           <a target="_blank" href="##">Lorenzo ho</a>
         </Col>
         <Col span="6" style={{padding: '5px 2% 15px'}}>
-          <h2>联系我们</h2>
+          <h2>联系我</h2>
           <a target="_blank" href="https://github.com/lorenzohee/koa-react-blog/issues">Bug 反馈</a> ||
           <a target="_blank" href="mailto://yongqinghee@163.com" style={{margin:10}}>Email</a>
           <a target="_blank" href="https://www.telegram.me/zfox49"></a>

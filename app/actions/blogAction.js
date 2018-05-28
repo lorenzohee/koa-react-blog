@@ -84,7 +84,7 @@ function postBlogService(object){
 function putBlogService(object){
     return dispatch=>{
         dispatch(editBlogRequest());
-        fetch(`api/blog/edit/${object.id}`, {method: 'PUT', body: JSON.stringify(object.blog)})
+        fetch(`/api/blog/edit/${object.id}`, {method: 'PUT', body: JSON.stringify(object.blog)})
             .then(res=>res.json())
             .then(data=>{
                 if('error' === data.state){
@@ -92,7 +92,7 @@ function putBlogService(object){
                     error.response = response;
                     throw error;
                 }
-                object.history.push(`/blog/${data.data._id}`)
+                object.history.push(`/blog/show/${data.data._id}`)
             })
             .catch(e=>{
                 dispatch(editBlogFail(e))

@@ -38,11 +38,6 @@ class Nav extends Component{
                         Server
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="guide">
-                    <Link to='/guide/good'>
-                        Guide
-                    </Link>
-                </Menu.Item>
                 <Menu.Item key="users">
                     <Link to='/users'>
                         Users

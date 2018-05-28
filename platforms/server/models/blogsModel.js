@@ -22,8 +22,9 @@ const blogModel = {
     createBlog: async (blog)=>{
         return new Promise((resolve, reject)=>{
             var blogCol = db.get('blogs')
-            console.log(blog+'!!!!!!!!!!!!')
-            blogCol.insert(JSON.parse(blog)).then(res=>{
+            let blog_init = JSON.parse(blog);
+            blog_init.create_at = (new Date()).getTime();
+            blogCol.insert(blog_init).then(res=>{
                 resolve(res)
             })
         })
@@ -49,11 +50,15 @@ const blogModel = {
     updateBlog: async (id, blog)=>{
         return new Promise((resolve, reject)=>{
             var blogCol = db.get('blogs');
-            blogCol.update({_id: ObjectID(id)}, blog).then(
-                res=>{
-                    resolve(res)
-                }
-            ).catch(e=>reject(e))
+            let blog_init = JSON.parse(blog);
+            blog_init.update_at = (new Date()).getTime();
+            blogCol.findOne({_id: ObjectID(id)}, (err, doc)=>{
+                blogCol.update(doc, blog_init).then(
+                    res=>{
+                        resolve(doc)
+                    }
+                ).catch(e=>reject(e))
+            })
         })
     }
 }

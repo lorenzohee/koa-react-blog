@@ -48,7 +48,7 @@ class Routes extends React.Component {
                                             <Route path="/blog/edit/:id" component={BlogEditPage} />
                                         </div>
                                     </div>
-                                    <div className='sideBar'>right</div>
+                                    <div className='sideBar'>广告位招租</div>
                                 </Content>
                                 <Footer style={{ textAlign: 'center' }}>
                                     <Route location={location} path="/" component={FooterPage} />
