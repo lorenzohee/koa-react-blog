@@ -11,6 +11,7 @@ import {Modal, Icon} from 'antd'
 import {getBlogList, deleteBlog} from '../../actions/blogAction'
 const ReactMarkdown = require('react-markdown')
 import './blog.less'
+import DateFormatter from '../../common/common-dateformatter'
 
 class BlogIndex extends Component{
     constructor(props){
@@ -40,12 +41,12 @@ class BlogIndex extends Component{
                             <Icon type="delete" onClick={this.deleteListner} id={item._id} className='blog_delete_button' />
                         </div>
                         <div className='blog_list_item_sub_title'>
-                            <Icon type="clock" /> 2018-05-12 12:25:32
+                            <Icon type="clock-circle-o" /> {DateFormatter({time: (item.create_at|| '')})}
                         </div>
                         <div className='blog_list_item_tags'></div>
                         <div className='blog_list_item_content'>
                             <image src="" />
-                            <div className='blog_list_item_content_body'><ReactMarkdown source={item.content} /></div>
+                            <div className='blog_list_item_content_body'><ReactMarkdown source={item.content.substr(0,200)+'...'} /></div>
                         </div>
                         <div className='blog_list_item_footer'></div>
                     </div>
