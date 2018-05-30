@@ -8,8 +8,10 @@ export default function (object) {
     let time = object.time || new Date();
     if(time==''){
         time = new Date();
+    }else{
+        time = new Date(time);
     }
-    let formatter = object.formatter || 'yyyy-MM-dd HH:mm:ss';
+    let formatter = object.formatter || 'yyyy-MM-dd hh:mm:ss';
     let o = {
         "M+": time.getMonth() + 1, //月份
         "d+": time.getDate(), //日
@@ -22,5 +24,5 @@ export default function (object) {
     if (/(y+)/.test(formatter)) formatter = formatter.replace(RegExp.$1, (time.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (var k in o)
         if (new RegExp("(" + k + ")").test(formatter)) formatter = formatter.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-    return time;
+    return formatter;
 }
