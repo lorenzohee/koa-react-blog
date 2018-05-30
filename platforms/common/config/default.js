@@ -12,7 +12,7 @@ export default {
   rootPath,
   publicPath: '/public',
   staticPath: '/public/static',
-  port: 3000,
+  port: 3388,
   db: {
     dialect: 'sqlite',
     username: '',
