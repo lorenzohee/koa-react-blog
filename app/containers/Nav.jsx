@@ -48,6 +48,16 @@ class Nav extends Component{
                         Blogs
                     </Link>
                 </Menu.Item>
+                <Menu.Item key="login">
+                    <Link to='/login'>
+                        Login
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="register">
+                    <Link to='/register'>
+                        Register
+                    </Link>
+                </Menu.Item>
             </Menu>
         </div>
     }

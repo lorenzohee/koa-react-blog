@@ -8,11 +8,25 @@ import monk from 'monk';
 
 const db = monk('localhost/myproject');
 
-export async function getUsers(){
-    return new Promise((resolve, reject)=>{
-        var users = db.get('users')
-        users.find({}, function(err, docs) {
-            resolve(docs);
+export default class UserModel{
+    async getUsersModel(){
+        return new Promise((resolve, reject)=>{
+            var users = db.get('users')
+            users.find({}, function(err, docs) {
+                resolve(docs);
+            })
         })
-    })
+    }
+
+    async crateUser(user){
+        return new Promise((resolve, reject)=>{
+            var userCol = db.get('users');
+            let user_save = JSON.parse(user);
+            user_save.create_at = (new Date()).getTime();
+            userCol.insert(user_save).then(res=>{
+                resolve(res)
+            })
+        })
+    }
+
 }

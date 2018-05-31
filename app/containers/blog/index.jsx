@@ -46,7 +46,7 @@ class BlogIndex extends Component{
                         <div className='blog_list_item_tags'></div>
                         <div className='blog_list_item_content'>
                             <image src="" />
-                            <div className='blog_list_item_content_body'><ReactMarkdown source={item.content.substr(0,200)+'...'} /></div>
+                            <div className='blog_list_item_content_body'><ReactMarkdown source={item.content+'...'} /></div>
                         </div>
                         <div className='blog_list_item_footer'></div>
                     </div>

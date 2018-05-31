@@ -18,6 +18,8 @@ import BlogNewPage from './containers/blog/new';
 import BlogIndexPage from './containers/blog/index';
 import BlogShowPage from './containers/blog/show';
 import BlogEditPage from './containers/blog/edit';
+import Register from './containers/user/register'
+import Login from './containers/user/login'
 import './common/global.less'
 
 class Routes extends React.Component {
@@ -42,10 +44,12 @@ class Routes extends React.Component {
                                             <Route path='/home' exact component={HomePage} />
                                             <Route path="/server" exact component={HomeServerStatusPage} />
                                             <Route path="/users" exact component={UserList} />
-                                            <Route location={location} path="/blogs" exact component={BlogIndexPage} />
+                                            <Route path="/blogs" exact component={BlogIndexPage} />
                                             <Route path="/blog/new" exact component={BlogNewPage} />
                                             <Route path="/blog/show/:id" component={BlogShowPage} />
                                             <Route path="/blog/edit/:id" component={BlogEditPage} />
+                                            <Route path="/register" component={Register} />
+                                            <Route path="/login" component={Login} />
                                         </div>
                                     </div>
                                     <div className='sideBar'>广告位招租</div>
