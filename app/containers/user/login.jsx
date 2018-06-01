@@ -55,4 +55,4 @@ class Login extends Component{
 
 export default connect(
     state=>state.userReducer
-)(Login)
+)(Form.create()(Login))

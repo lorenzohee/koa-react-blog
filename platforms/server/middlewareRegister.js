@@ -18,7 +18,6 @@ import config from '../common/config'
 import response_formatter from '../common/services/response_formatter'
 import jwt from 'koa-jwt'
 
-const secert = 'jwt_secret_lorenzo'
 const templatePath = path.join(__dirname, './templates')
 
 export default (app) => {
@@ -28,7 +27,7 @@ export default (app) => {
   app.use(convert(logger()))
 
     //jwt authen
-  // app.use(jwt({secert}).unless({path: [/\api/, /\login/, /\register/]}))
+  app.use(jwt({secret: 'jwt_secret_lorenzo'}).unless({path: [/\api/, /\login/, /\register/]}))
 
   // static serve
   app.use(convert(koaStatic(config.rootPath + config.publicPath)))

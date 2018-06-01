@@ -22,6 +22,6 @@ router.get('/blogs', getBlogs)
 router.del('/blog/:id', deleteById)
 router.put('/blog/edit/:id', koaBody(), updateBlogById)
 router.post('/users/register', koaBody(), register)
-router.post('/users/login', koaBody(), login)
+router.get('/users/login', koaBody(), login)
 
 export default router

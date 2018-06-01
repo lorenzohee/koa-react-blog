@@ -29,4 +29,13 @@ export default class UserModel{
         })
     }
 
+    async getUserByEmail(email){
+        return new Promise((resolve, reject)=>{
+            const userCol = db.get('users');
+            userCol.findOne({email: email}).then(res=>{
+                resolve(res)
+            })
+        })
+    }
+
 }
