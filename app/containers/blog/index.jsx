@@ -30,8 +30,7 @@ class BlogIndex extends Component{
     	const blogs = this.props.blogs;
         return <div>
             <div style={{display: 'inline-block', width: '100%'}}>
-        	<Link to="/blog/new" style={{float: 'right', margin: '10px', border: '1px solid #dcdcdc', padding: '4px 12px'}}>新建</Link>
-                {/*<Button onClick={this.deleteListner} >delete</Button>*/}
+        	    <Link to="/blog/new" style={{float: 'right', margin: '10px', border: '1px solid #dcdcdc', padding: '4px 12px'}}>新建</Link>
             </div>
             {
                 blogs && blogs.reverse().map((item, key) => (
@@ -46,7 +45,7 @@ class BlogIndex extends Component{
                         <div className='blog_list_item_tags'></div>
                         <div className='blog_list_item_content'>
                             <image src="" />
-                            <div className='blog_list_item_content_body'><ReactMarkdown source={item.content+'...'} /></div>
+                            <div className='blog_list_item_content_body'><ReactMarkdown source={(item.content && item.content.substr(0,200))+'...'} /></div>
                         </div>
                         <div className='blog_list_item_footer'></div>
                     </div>

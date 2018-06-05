@@ -27,7 +27,7 @@ export default (app) => {
   app.use(convert(logger()))
 
     //jwt authen
-  app.use(jwt({secret: 'jwt_secret_lorenzo'}).unless({path: [/\api/, /\login/, /\register/]}))
+  // app.use(jwt({secret: 'jwt_secret_lorenzo'}).unless({path: [/\api/, /\login/, /\register/]}))
 
   // static serve
   app.use(convert(koaStatic(config.rootPath + config.publicPath)))
